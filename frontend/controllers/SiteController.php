@@ -9,7 +9,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use frontend\models\LoginForm;
+use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -64,12 +64,6 @@ class SiteController extends Controller
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-                'maxLength' => 5,//最大显示个数
-                'minLength' => 4,//最少显示个数
-                'padding' => 2,//验证码字体大小，数值越小字体越大
-                'height' => 40,
-                'width' => 120,
-                'offset' => 4,//设置字符偏移量
             ],
         ];
     }
@@ -115,8 +109,8 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return ['status' => 1];
+
+        return $this->goHome();
     }
 
     /**
@@ -158,40 +152,6 @@ class SiteController extends Controller
      * @return mixed
      */
     public function actionSignup()
-    {
-        $model = new SignupForm();
-        $type = Yii::$app->request->get('type', 1);
-        if ($type == 1) {
-            $model->scenario = SignupForm::SCENARIO_STUDENT;
-        } else {
-            $model->scenario = SignupForm::SCENARIO_TEACHER;
-        }
-        $model->type = $type;
-        
-        if ($model->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-            if ($model->signup()) {
-                return [
-                    'url' => Yii::$app->getHomeUrl(),
-                    'status' => 200,
-                    'msg' => '恭喜你，账号注册成功！'
-                ];
-            } else {
-                $tmp_error = $model->getFirstErrors();
-                foreach($model->activeAttributes() as $error) {
-                    if(isset( $tmp_error[$error]) && !empty($tmp_error[$error])){
-                        return ['status' => 0, 'msg' => $tmp_error[$error]];
-                    }
-                }
-            }
-            
-        }
-        
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
-    }
-    public function actionSignup111()
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->signup()) {

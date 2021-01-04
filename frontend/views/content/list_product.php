@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use common\widgets\ListView;
+use yii\widgets\ListView;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */

@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use common\helpers\Tree;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%category}}".
@@ -30,6 +31,13 @@ class Category extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return '{{%category}}';
+    }
+    
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
     }
 
     /**

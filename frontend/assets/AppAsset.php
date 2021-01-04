@@ -19,18 +19,14 @@ class AppAsset extends AssetBundle
         'statics/css/style.css',
     ];
     public $js = [
-        //"statics/js/jquery-2.2.1.min.js",
+        "statics/js/jquery-2.2.1.min.js",
         "statics/js/bootstrap.min.js",
-        "statics/js/vue.min.js",
         "statics/js/jquery-core-plugins.js",
         "statics/js/jquery.validate.min.js",
-        "statics/js/jquery.cityselect.js",
-        "statics/plugins/layer/layer.js",
-        "statics/plugins/sweetalert.min.js",
         'statics/js/app.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
+        //'yii\web\YiiAsset',
         //'yii\bootstrap\BootstrapAsset',
     ];
 }

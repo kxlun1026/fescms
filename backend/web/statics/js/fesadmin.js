@@ -199,75 +199,16 @@ $(function() {
 		todayHighlight: true,
 		fontAwesome:true
 	});
-	$('.signbtn').on('click',function(event){
-		event.preventDefault();
-		var url = $(this).attr('href');
-		parent.layer.confirm('确定签到吗？', {icon: 3, title:'提示'}, function(index) {
-			App.ajax({
-				url: url,
-				type: 'get',
-				data: {invoice_status:1},
-				success: function (res) {
-					parent.layer.msg(res.msg, {icon: 1, time: 1000}, function(){
-						location.reload();
-					});
-				}
-			});
-		});
-		return false;
-	});
-	$('.order-verify').on('click',function(event){
-		event.preventDefault();
-		var url = $(this).attr('href');
-		parent.layer.confirm('请点击通过或拒绝按钮进行订单审核。', {
-			btn: ['通过', '拒绝', '取消'] //按钮
-		}, function() {
-			App.ajax({
-				url: url,
-				type: 'get',
-				data: {pay_status:0},
-				success: function (data) {
-					parent.layer.msg('订单审核成功！', {icon: 1}, function(){
-						location.reload();
-					});
-				}
-			});
-			
-		}, function() {
-			App.ajax({
-				url: url,
-				type: 'get',
-				data: {pay_status:3},
-				success: function (data) {
-					parent.layer.msg('订单审核成功！', {icon: 1}, function(){
-						location.reload();
-					});
-				}
-			});
-		});
-		return false;
-		
-		
-		
-	});
-	$('.modal-open').on('click',function(event){
-		event.preventDefault();
-		var url = $(this).attr('href');
-		var id = $(this).attr('id');
-		Modal.open(id, url);
-		/* App.ajax({
-			url: url,
-			type: 'get',
-			dataType:'html',
-			success: function (data) {
-				Modal.open(id, data);
-			}
-		}); */
-		return false;
-		
-		
-		
-	});
+	$("input[name='Category[type]']").on("click",function () {
+		//console.log($(this).val());
+		if ($("input[name='Category[type]']:checked").val()== 0) {
+			$('#category-list-template').show();
+			$('#category-page-template').hide();
+		} else {
+			$('#category-list-template').hide();
+			$('#category-page-template').show();
+		}
+	})
 	
 	// 图片/文件选择
 	$(document).on("click", ".mailbox-attachment-icon", function (e) {

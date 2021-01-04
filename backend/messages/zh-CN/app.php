@@ -84,6 +84,7 @@ return [
     'Category Template' => '栏目首页模板',
     'List Template' => '栏目列表页模板',
     'Show Template' => '内容页模板',
+    'Page Template' => '单页模板',
     'please_add_category' => '请先创建栏目',
     //附件管理
     'Attachments' => '附件管理',

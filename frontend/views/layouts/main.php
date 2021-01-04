@@ -4,9 +4,12 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
-use yii\helpers\Url;
+use yii\base\Widget;
 
 AppAsset::register($this);
 $this->title = $this->title ? $this->title.' - ' : '';
@@ -17,99 +20,118 @@ $this->title = $this->title ? $this->title.' - ' : '';
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode($this->title.Yii::$app->config->site_title) ?></title>
+    <meta name="keywords" content="<?= Html::encode(Yii::$app->config->site_keywords) ?>" >
+	<meta name="description" content=""<?= Html::encode(Yii::$app->config->site_description) ?>>
     <?php $this->head() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark" id="homeheader">
-  <div class="container">
-  <a class="navbar-brand" href="#">WGDC2021</a>
-  
-  <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-  <div class="collapse navbar-collapse" id="navbars">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active"> <?= Html::a('首页', ['site/index'], ['class' => 'nav-link']) ?> </li>
-      <li class="nav-item"> <?= Html::a('报名参赛', ['contest/index'], ['class' => 'nav-link']) ?> </li>
-      <li class="nav-item"> <?= Html::a('竞赛介绍', ['content/index', 'catdir' => 'jiabin'], ['class' => 'nav-link']) ?> </li>
-      <li class="nav-item"> <?= Html::a('竞赛分组', ['/content/index', 'catdir' => 'jiabin'], ['class' => 'nav-link']) ?> </li>
-      <li class="nav-item"> <?= Html::a('竞赛辅导', ['/content/index','catdir'=>'2020'], ['class' => 'nav-link']) ?> </li>
-      <li class="nav-item"> <?= Html::a('作品展示', ['/content/index','catdir'=>'2020'], ['class' => 'nav-link']) ?> </li>
-      <li class="nav-item"> <?= Html::a('技术咨询区', ['/content/index','catdir'=>'2020'], ['class' => 'nav-link']) ?> </li>
-      <li class="nav-item"> <?= Html::a('竞赛新闻', ['/content/index','catdir'=>'2020'], ['class' => 'nav-link']) ?> </li>
-      <li class="nav-item"> <?= Html::a('个人中心', ['/member/index'], ['class' => 'nav-link']) ?> </li>
-    </ul>
-    <?php if (Yii::$app->user->isGuest):?>
-    <div class="navbar-user">
-	  <a class="btn btn-success btn-sm my-2 my-sm-0 mr-2 px-3" href="<?= Url::toRoute(['site/login']) ?>"> 登录 </a>
-      <a class="btn btn-outline-success btn-sm my-2 my-sm-0 px-3" href="<?= Url::toRoute(['site/signup']) ?>"> 注册 </a>
-	</div>
-	<?php else:?>
-	<div class="navbar-user dropdown">
-	  <a class="dropdown-toggle" href="#" role="button" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	    <i>a</i><span class="user-name"><?=Yii::$app->user->identity->username;?></span>
-	  </a>
-	  <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="userMenu">
-	    <a class="dropdown-item" href="<?= Url::toRoute(['member/index']) ?>">个人中心</a>
-	    <a class="dropdown-item" href="<?= Url::toRoute(['member/ticket']) ?>">活动门票</a>
-	    <a class="dropdown-item" href="<?= Url::toRoute(['member/order']) ?>">活动订单</a>
-		<div class="dropdown-divider"></div>
-	    <a class="dropdown-item logout" href="<?= Url::toRoute(['site/logout']) ?>">退出</a>
-	  </div>
-	</div>
-    <form class="form-inline my-2 my-lg-0">
-      
-    </form>
-    <?php endif;?>
-  </div>
-  </div>
-</nav>
+<header class="header navbar navbar-expand-md navbar-light">
+			<div class="container">
+				<a class="navbar-brand" href="#">Container</a>
+				<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbars" aria-controls="navbars"
+				 aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+				<div class="collapse navbar-collapse" id="navbars">
+					<?php 
+					echo \frontend\widgets\Menu::widget([
+					    'options' => ['class' => 'ml-auto'],
+					]);
+					?>
+					<div class="sp-phone d-none d-md-block">
+						<i class="fa fa-phone"></i>
+						<div class="d-inline-block ml-2">
+							<div class="phone-text">咨询热线</div>
+							<div class="phone-no">123156465</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
 
 <?= $content ?>
 
-<footer class="footer">
-	<div class="container py-5">
-		<div class="row">
-			<div class="col-6 col-md">
-				<div class="heading-footer"><h5>赞助参展</h5></div>
-				<ul class="list-unstyled text-small">
-					<li class="pb-2">xx先生</li>
-					<li class="pb-2">13212364569</li>
-					<li class="pb-2">sssssdds@ssss.com</li>
-				</ul>
+<footer class="dark-footer skin-dark-footer style-2">
+			<div class="footer-middle">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-3 col-md-3">
+							<div class="footer_widget">
+								<div class="footlogo"><img src="images/logo-light.png" class="img-fluid mb-3" alt="" /></div>
+								<p>一段话介绍公司的宣传语一段话介绍公司的宣传语</p>
+								<ul class="footer-bottom-social d-none d-sm-block">
+									<li><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="<img class='img-fluid' src='images/ewm_app.png'>"><i class="fa fa-wechat"></i></a></li>
+									<li><a href="#"><i class="fa fa-weibo"></i></a></li>
+									<li><a href="#"><i class="fa fa-qq"></i></a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-2 col-md-2 d-none d-sm-block">
+							<div class="footer_widget">
+								<h4 class="widget_title">关于我们</h4>
+								<ul class="footer-menu">
+									<li><a href="#">公司介绍</a></li>
+									<li><a href="#">企业文化</a></li>
+									<li><a href="#">联系我们</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-2 col-md-2 d-none d-sm-block">
+							<div class="footer_widget">
+								<h4 class="widget_title">服务案例</h4>
+								<ul class="footer-menu">
+									<li><a href="#">服务项目</a></li>
+									<li><a href="#">案例展示</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-2 col-md-2 d-none d-sm-block">
+							<div class="footer_widget">
+								<h4 class="widget_title">新闻动态</h4>
+								<ul class="footer-menu">
+									<li><a href="#">公司动态</a></li>
+									<li><a href="#">行业动态</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-3 col-md-3">
+							<div class="footer_widget">
+								<h4 class="widget_title">联系方式</h4>
+								<ul class="footer-menu">
+									<li class="d-flex">
+										<span class="mr-2"><i class="fa fa-home" aria-hidden="true"></i></span>
+										<span>379 5Th Ave New York,Nyc 10018 </span>
+									</li>
+									<li class="d-flex">
+										<span class="mr-2"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+										<span>xxxx@xxx.com </span>
+									</li>
+									<li class="d-flex">
+										<span class="mr-2"><i class="fa fa-phone" aria-hidden="true"></i></span>
+										<span>12345678999<br>12345678999</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="col-6 col-md">
-				<div class="heading-footer"><h5>媒体合作</h5></div>
-				<ul class="list-unstyled text-small">
-					<li class="pb-2">xx先生</li>
-					<li class="pb-2">13212364569</li>
-					<li class="pb-2">sssssdds@ssss.com</li>
-				</ul>
+			<div class="footer-bottom">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-12 col-md-12">
+							<p class="mb-0">© <?= date('Y') ?> Verio. Designd By <a href="http://www.igkcms.com/">igkcms</a></p>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="col-6 col-md">
-				<div class="heading-footer"><h5>票务咨询</h5></div>
-				<ul class="list-unstyled text-small">
-					<li class="pb-2">xx先生</li>
-					<li class="pb-2">13212364569</li>
-					<li class="pb-2">sssssdds@ssss.com</li>
-				</ul>
-			</div>
-			
-		</div>
-	</div>
-	<div class="copyright">
-        <div class="container">&copy; <?= date('Y') ?>  All right reserved. Development by igkcms</div>
-    </div>
-</footer>
+		</footer>
 
 
 <?php $this->endBody() ?>
-<?= $this->render('_flash') ?>
 </body>
 </html>
 <?php $this->endPage() ?>

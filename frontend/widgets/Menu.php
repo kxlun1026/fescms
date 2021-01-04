@@ -104,7 +104,7 @@ class Menu extends Widget
     {
         $categorys = Category::find()->orderBy('sort DESC,id DESC')->asArray()->all();
         //return $this->getChild($categorys);
-        return ArrayHelper::merge([['label' => '首页', 'url' => '/site/index']], $this->getChild($categorys));
+        return ArrayHelper::merge([['label' => '首页', 'url' => ['/site/index']]], $this->getChild($categorys));
     }
     
     protected function getChild($categorys, $parentid = 0)

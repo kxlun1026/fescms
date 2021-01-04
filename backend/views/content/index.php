@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title.Yii::t('app', 'List');
                 'width' => '40',
                 'format' => 'raw',
                 'value'  => function($model){
-                    return $model->status == 99 ? '<label class="label bg-success">发布</label>' : '<label class="label bg-dark">隐藏</label>';
+                    return $model->status == 99 ? '<label class="label label-success">发布</label>' : '<label class="label label-dark">隐藏</label>';
                 }
             ],
             [

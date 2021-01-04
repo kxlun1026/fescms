@@ -28,14 +28,14 @@ $model->type = $model->type ? $model->type : 0;
     
     <?= $form->field($model, 'image')->widget('common\widgets\webuploader\Webuploader',['config'=>['fileSingleSizeLimit'=>Yii::$app->config->site_upload_maxsize,'acceptExtensions'=>Yii::$app->config->site_upload_allowext]]) ?>
     
-<div id="category-list-template">
+<div id="category-list-template" <?php if ($model->type == 1) echo 'style="display: none"';?>>
     <?= $form->field($model, 'category_template')->dropdownList(Util::showTemplate('category'),['prompt'=>'选择模板']);?>
     
     <?= $form->field($model, 'list_template')->dropdownList(Util::showTemplate('list'),['prompt'=>'选择模板']);?>
     
     <?= $form->field($model, 'show_template')->dropdownList(Util::showTemplate('show'),['prompt'=>'选择模板']);?>
 </div>
-<div id="category-page-template" style="display: none">
+<div id="category-page-template" <?php if ($model->type == 0) echo 'style="display: none"';?>>
     <?= $form->field($model, 'page_template')->dropdownList(Util::showTemplate('page'),['prompt'=>'选择模板']);?>
 </div>
     <?= $form->field($model, 'sort')->textInput() ?>

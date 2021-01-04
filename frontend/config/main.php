@@ -89,13 +89,11 @@ return [
                 ],
                 
                 [
-                    'pattern' => 'detail/<id>',
+                    'pattern' => 'p/<id>',
                     'route' => 'content/view',
                     'encodeParams' => false,
                     'defaults' => ['id' => null],
                 ],
-                
-                'page/<catdir>' => 'page/view',
             ],
         ],
     ],

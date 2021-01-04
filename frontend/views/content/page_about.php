@@ -4,7 +4,7 @@
 
 use yii\helpers\Html;
 
-$this->title = $model->title;
+$this->title = '关于我们';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <section class="bg-img1 kit-overlay1" style="background-image: url(images/bg-05.jpg);">
