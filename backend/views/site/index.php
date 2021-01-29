@@ -88,7 +88,7 @@ $identity = Yii::$app->user->identity;
 						</div>
 						<div class="info">
 							<?= $identity->username ?>
-							<small><?= $identity->getRolesNameString()?></small>
+							<small><i class="fa fa-circle text-success"></i> <?= $identity->getRolesNameString()?></small>
 						</div>
 					</li>
 				</ul>

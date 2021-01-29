@@ -308,7 +308,7 @@ class Admin extends ActiveRecord implements IdentityInterface
     public function getRolesName()
     {
         if( in_array( $this->getId(), Yii::$app->getBehavior('access')->superAdminUserIds ) ){
-            return [Yii::t('app', 'System')];
+            return [Yii::t('app', 'System Administrator')];
         }
         $role = array_keys( Yii::$app->authManager->getRolesByUser($this->getId()) );
         if( !isset( $role[0] ) ) return [];

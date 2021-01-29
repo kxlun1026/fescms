@@ -2,6 +2,7 @@
 return [
 	//系统
 	'Backend Manage System' => 'FesAdmin管理中心',
+    'System Administrator' => '系统管理员',
     'Save' => '保存',
     'Success' => '成功',
     'Create' => '创建',

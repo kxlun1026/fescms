@@ -19,6 +19,7 @@ class AdminLog extends \yii\base\Event
      */
     public static function create($event)
     {
+        return true;
         if ($event->sender->className() !== LogModel::className()) {
             $desc = '<br>';
             foreach ($event->sender->getAttributes() as $name => $value) {
@@ -47,6 +48,7 @@ class AdminLog extends \yii\base\Event
      */
     public static function update($event)
     {
+        return true;
         if (! empty($event->changedAttributes)) {
             $desc = '<br>';
             $oldAttributes = $event->sender->oldAttributes;
@@ -77,6 +79,7 @@ class AdminLog extends \yii\base\Event
      */
     public static function delete($event)
     {
+        return true;
         $desc = '<br>';
         foreach ($event->sender->getAttributes() as $name => $value) {
             !is_string( $value ) && $value = print_r($value, true);

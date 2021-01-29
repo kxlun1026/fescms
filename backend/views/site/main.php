@@ -3,57 +3,72 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 ?>
 
-<div class="row state-overview m-t-20">
-  <div class="col-lg-3 col-sm-6">
-    <section class="card">
-      <div class="symbol terques"><i class="fa fa-user"></i></div>
-      <div class="value">
-        <h1 class="count">495</h1>
-        <p>用户</p>
-      </div>
-    </section>
-  </div>
-  <div class="col-lg-3 col-sm-6">
-    <section class="card">
-      <div class="symbol red"><i class="fa fa-tags"></i></div>
-      <div class="value">
-        <h1 class=" count2">947</h1>
-        <p>文章</p>
-      </div>
-    </section>
-  </div>
-  <div class="col-lg-3 col-sm-6">
-    <section class="card">
-      <div class="symbol yellow"><i class="fa fa-shopping-cart"></i></div>
-      <div class="value">
-        <h1 class=" count3">328</h1>
-        <p>栏目</p>
-      </div>
-    </section>
-  </div>
-  <div class="col-lg-3 col-sm-6">
-    <section class="card">
-      <div class="symbol blue"><i class="fa fa-bar-chart-o"></i></div>
-      <div class="value">
-        <h1 class=" count4">10328</h1>
-        <p>附件</p>
-      </div>
-    </section>
-  </div>
+<div class="row m-t-20">
+	<!-- begin col-3 -->
+	<div class="col-md-3 col-xs-6">
+		<div class="widget widget-stats bg-green p-20">
+			<div class="stats-icon"><i class="fa fa-users"></i></div>
+			<div class="stats-info">
+				<h4>用户</h4>
+				<p>3,291,922</p>	
+			</div>
+		</div>
+	</div>
+	<!-- end col-3 -->
+	<!-- begin col-3 -->
+	<div class="col-md-3 col-xs-6">
+		<div class="widget widget-stats bg-blue p-20">
+			<div class="stats-icon"><i class="fa fa-desktop"></i></div>
+			<div class="stats-info">
+				<h4>参赛报名</h4>
+				<p>20.44%</p>	
+			</div>
+		</div>
+	</div>
+	<!-- end col-3 -->
+	<!-- begin col-3 -->
+	<div class="col-md-3 col-xs-6">
+		<div class="widget widget-stats bg-purple p-20">
+			<div class="stats-icon"><i class="fa fa-file-text"></i></div>
+			<div class="stats-info">
+				<h4>文章</h4>
+				<p>1,291,922</p>	
+			</div>
+		</div>
+	</div>
+	<!-- end col-3 -->
+	<!-- begin col-3 -->
+	<div class="col-md-3 col-xs-6">
+		<div class="widget widget-stats bg-red p-20">
+			<div class="stats-icon"><i class="fa fa-paperclip"></i></div>
+			<div class="stats-info">
+				<h4>附件</h4>
+				<p>00:12:23</p>	
+			</div>
+		</div>
+	</div>
+	<!-- end col-3 -->
 </div>
+
 
 <div class="row m-t-20">
     <div class="col-sm-6">
         <div class="card">
           <div class="card-header">
-            <h4>我的个人信息</h4>
+            <h4>个人信息</h4>
           </div>
-          <div class="card-body">
-            <ul class="list-group">
-              <li class="list-group-item">您好，<?= Yii::$app->getUser()->getIdentity()->username ?></li>
-              <li class="list-group-item "> <strong>所属角色</strong>：
-                <?= Yii::$app->getUser()->getIdentity()->getRolesNameString()?>
-              </li>
+          <div class="card-body p-20">
+            <div class="media media-sm">
+				<a href="javascript:;" class="pull-left">
+					<img src="statics/images/user-13.jpg" class="media-object rounded-corner">
+				</a>
+				<div class="media-body">
+					<h4 class="media-heading m-t-10">您好，<?= Yii::$app->getUser()->getIdentity()->username ?></h4>
+					<p>角色：<?= Yii::$app->getUser()->getIdentity()->getRolesNameString()?></p>
+				</div>
+			</div>
+			<hr>
+            <ul class="list-group clear-list">
               <li class="list-group-item "> <strong>上次登录时间</strong>：
                 <?= date('Y-m-d H:i:s', Yii::$app->user->identity->prev_login_time)?>
               </li>
@@ -72,36 +87,28 @@ use yii\helpers\Html;
           <div class="card-header">
             <h4>系统信息</h4>
           </div>
-          <div class="card-body">
-            <ul class="list-group">
-              <li class="list-group-item"> <span class="badge bg-primary">&nbsp;&nbsp;</span><strong>IGKCMS</strong>:
-                <?= Yii::$app->getVersion() ?>
+          <div class="card-body p-r-25 p-l-25">
+            <ul class="list-group service-list">
+              <li class="list-group-item "><span class="pull-right text-muted"><?= $info['OPERATING_ENVIRONMENT'] ?></span> <span class="badge bg-green">&nbsp;&nbsp;</span> <strong>Web Server</strong>:
+                
               </li>
-              <li class="list-group-item "> <span class="badge bg-info">&nbsp;&nbsp;</span> <strong>Web Server</strong>:
-                <?= $info['OPERATING_ENVIRONMENT'] ?>
+              <li class="list-group-item "><span class="pull-right text-muted"><?= $info['PHP_VERSION'] ?></span> <span class="badge bg-aqua">&nbsp;&nbsp;</span> <strong>PHP版本</strong>:
+                
               </li>
-              <li class="list-group-item "> <span class="badge bg-info">&nbsp;&nbsp;</span> <strong>PHP版本</strong>:
-                <?= $info['PHP_VERSION'] ?>
-              </li>
-              <li class="list-group-item"> <span class="badge bg-success">&nbsp;&nbsp;</span> <strong>
+              <li class="list-group-item"><span class="pull-right text-muted"><?= $info['DB_INFO'] ?></span> <span class="badge bg-blue">&nbsp;&nbsp;</span> <strong>
                 数据库信息
                 </strong>:
-                <?= $info['DB_INFO'] ?>
+                
               </li>
-              <li class="list-group-item"> <span class="badge bg-success">&nbsp;&nbsp;</span> <strong>
+              <li class="list-group-item"><span class="pull-right text-muted"><?= $info['UPLOAD_MAX_FILE_SIZE'] ?></span> <span class="badge bg-purple">&nbsp;&nbsp;</span> <strong>
                 文件上传限制
                 </strong>:
-                <?= $info['UPLOAD_MAX_FILE_SIZE'] ?>
+                
               </li>
-              <li class="list-group-item"> <span class="badge bg-success">&nbsp;&nbsp;</span> <strong>
+              <li class="list-group-item"><span class="pull-right text-muted"><?= $info['MAX_EXECUTION_TIME'] ?></span> <span class="badge bg-red">&nbsp;&nbsp;</span> <strong>
                 脚本超时限制
                 </strong>:
-                <?= $info['MAX_EXECUTION_TIME'] ?>
-              </li>
-              <li class="list-group-item"> <span class="badge bg-danger">&nbsp;&nbsp;</span> <strong>
-                PHP执行方式
-                </strong>:
-                <?= $info['PHP_RUN_MODE'] ?>
+                
               </li>
             </ul>
             

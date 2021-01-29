@@ -36,7 +36,7 @@ class LogController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => AdminLog::find(),
+            'query' => AdminLog::find()->with('admin'),
         ]);
 
         return $this->render('index', [
