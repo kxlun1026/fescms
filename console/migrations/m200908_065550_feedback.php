@@ -25,7 +25,7 @@ class m200908_065550_feedback extends Migration
             'email' => $this->string(50)->notNull(),
             'mobile' => $this->string(20)->notNull(),
             'content' => $this->text(),
-            'status' => $this->smallInteger()->unsigned()->notNull()->defaultValue(0),
+            'status' => $this->tinyInteger()->unsigned()->notNull()->defaultValue(0),
             'created_at' => $this->integer()->unsigned()->notNull()->defaultValue(0),
             'updated_at' => $this->integer()->unsigned()->notNull()->defaultValue(0),
         ], $tableOptions);

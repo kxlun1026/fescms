@@ -10,7 +10,7 @@ namespace backend\widgets;
 
 use yii\base\Widget;
 
-class CategoryTree extends Widget
+class CategoryWidget extends Widget
 {
     public $data = [];
     public $firstLevelLiTemplate = '<li><a href="javascript:;">{name}{arrow}</a>{child}</li>';
